@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Chửi Phước — Văn minh nhưng gắt</title>
+  <style>
+    body{font-family:Inter, system-ui, sans-serif;background:#f5f5f5;margin:0;padding:40px;color:#1b1b1b}
+    .wrap{max-width:820px;margin:0 auto}
+    .card{background:#fff;border-radius:14px;box-shadow:0 8px 30px rgba(0,0,0,0.08);padding:22px}
+    .roast{font-size:18px;line-height:1.45;margin-bottom:10px}
+    .controls{display:flex;gap:8px;margin-top:14px}
+    button{border:0;padding:10px 14px;border-radius:10px;font-weight:600;cursor:pointer;background:#ef6c63;color:#fff}
+    .choices{display:flex;gap:10px;margin-top:12px}
+    .choice-btn{padding:8px 14px;border-radius:8px;border:1px solid #ccc;background:#fafafa;cursor:pointer;font-weight:600}
+    .result{margin-top:10px;font-weight:700;color:#ef6c63}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <div id="line" class="roast">Phước à, mày gay đúng không</div>
+
+      <div class="choices">
+        <button class="choice-btn" id="yes">Có</button>
+        <button class="choice-btn" id="no">Không</button>
+      </div>
+      <div id="result" class="result"></div>
+
+      <div class="controls">
+        <button id="next">Câu khác</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const lines = [
+      'Phước à, mày gay đúng không',
+      'ditconmemay'
+    ];
+
+    let idx = 0;
+    const el = document.getElementById('line');
+    const res = document.getElementById('result');
+
+    document.getElementById('next').addEventListener('click', ()=>{
+      idx = (idx+1) % lines.length;
+      el.textContent = lines[idx];
+      res.textContent = '';
+    });
+
+    document.getElementById('yes').addEventListener('click', ()=>{
+      res.textContent = 'Phước trả lời: Có ✔️';
+    });
+    document.getElementById('no').addEventListener('click', ()=>{
+      res.textContent = 'Phước trả lời: Có ✔️';
+    });
+  </script>
+</body>
+</html>
