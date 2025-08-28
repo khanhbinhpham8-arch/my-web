@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Chửi Phước — Văn minh nhưng gắt</title>
   <style>
-    body{font-family:Inter, system-ui, sans-serif;background:#f5f5f5;margin:0;padding:40px;color:#1b1b1b}
-    .wrap{max-width:820px;margin:0 auto}
+    body{font-family:Inter, system-ui, sans-serif;background:#f5f5f5;margin:0;padding:40px;color:#1b1b1b;overflow:hidden}
+    .wrap{max-width:820px;margin:0 auto;position:relative;z-index:2}
     .card{background:#fff;border-radius:14px;box-shadow:0 8px 30px rgba(0,0,0,0.08);padding:22px}
     .roast{font-size:18px;line-height:1.45;margin-bottom:10px}
     .controls{display:flex;gap:8px;margin-top:14px}
@@ -14,12 +14,26 @@
     .choices{display:flex;gap:10px;margin-top:12px}
     .choice-btn{padding:8px 14px;border-radius:8px;border:1px solid #ccc;background:#fafafa;cursor:pointer;font-weight:600}
     .result{margin-top:10px;font-weight:700;color:#ef6c63}
+
+    /* Icon rơi */
+    .icon {
+      position: fixed;
+      top: -50px;
+      font-size: 28px;
+      animation-name: fall;
+      animation-timing-function: linear;
+    }
+    @keyframes fall {
+      to {
+        transform: translateY(110vh) rotate(360deg);
+      }
+    }
   </style>
 </head>
 <body>
   <div class="wrap">
     <div class="card">
-      <div id="line" class="roast">Phước à, mày gay đúng không</div>
+      <div id="line" class="roast">Phước à, mày gay đúng không?</div>
 
       <div class="choices">
         <button class="choice-btn" id="yes">Có</button>
@@ -35,8 +49,8 @@
 
   <script>
     const lines = [
-      'Phước à, mày gay đúng không',
-      'ditconmemay'
+      'Phước à, mày đúng không?',
+      'Phước ơi, hết thuốc chữa rồi!'
     ];
 
     let idx = 0;
@@ -55,6 +69,18 @@
     document.getElementById('no').addEventListener('click', ()=>{
       res.textContent = 'Phước trả lời: Có ✔️';
     });
+
+    // Hiệu ứng icon rơi
+    function createIcon(){
+      const icon = document.createElement('div');
+      icon.classList.add('icon');
+      icon.textContent = '🖕';
+      icon.style.left = Math.random() * window.innerWidth + 'px';
+      icon.style.animationDuration = (3 + Math.random()*3) + 's';
+      document.body.appendChild(icon);
+      setTimeout(()=>{ icon.remove(); }, 6000);
+    }
+    setInterval(createIcon, 500);
   </script>
 </body>
 </html>
